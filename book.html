@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The VermiGold Farmer's Almanac | Print Edition</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="site-nav"><a class="brandmark" href="index.html"><span>VERMIGOLD</span><span class="tm">™</span></a></nav>
+
+<main>
+<div class="stage">
+
+  <section class="card light reveal">
+    <div class="eyebrow">The Print Edition</div>
+    <h2 class="headline">The VermiGold Farmer's Almanac</h2>
+    <p class="lede">A Regenerative Soil Guide for the High Desert. The same 79-page system you downloaded, bound for the potting bench &mdash; the philosophy, the G.R.O.W.T.H. framework, the regional playbook, and the full month-by-month calendar in one book.</p>
+
+    <div class="benefit-grid">
+      <div class="benefit">
+        <div class="icon">&#128218;</div>
+        <div class="txt"><b>The full G.R.O.W.T.H. System</b><span>Grow biology, root continuity, organic cover, water retention, total ecosystem, and the human side of it &mdash; explained in order.</span></div>
+      </div>
+      <div class="benefit">
+        <div class="icon">&#128197;</div>
+        <div class="txt"><b>A month-by-month playbook</b><span>January through December, with the annual cycle mapped for Cedar City, Enoch, and St. George.</span></div>
+      </div>
+      <div class="benefit">
+        <div class="icon">&#127807;</div>
+        <div class="txt"><b>Visual charts &amp; tables</b><span>The regional planting calendar, water retention chart, and annual application wheel &mdash; easier to reference on paper than a phone screen.</span></div>
+      </div>
+    </div>
+
+    <blockquote class="quote">&ldquo;Soil is a living system. When you fix the system, everything improves.&rdquo;<cite>&mdash; A Letter to the Grower, The VermiGold Farmer's Almanac</cite></blockquote>
+
+    <div class="print-bump" id="reserve-block">
+      <div class="print-bump-copy">
+        <b>Reserve your printed copy</b>
+        <span>We're taking print reservations now &mdash; no payment needed today. We'll email you the moment copies are ready to order.</span>
+      </div>
+      <form id="book-form" novalidate>
+        <div class="field">
+          <label class="field-label" for="book-email-input">Email address</label>
+          <input id="book-email-input" type="email" placeholder="you@example.com" autocomplete="email" required>
+        </div>
+        <div class="error-msg" id="book-email-error"></div>
+        <button class="cta" type="submit">Reserve My Printed Copy</button>
+      </form>
+      <div class="print-bump-done" id="book-done" hidden>You're on the list &mdash; we'll email <span id="book-done-email"></span> the moment it's ready to order.</div>
+    </div>
+
+    <a class="cta secondary block" style="margin-top:16px;" href="product.html">Prefer to start with the soil itself? See VermiGold &rarr;</a>
+  </section>
+
+</div>
+</main>
+
+<footer class="site-footer">VermiGold™ Soil Systems &middot; <a href="https://www.vermigold.shop" target="_blank" rel="noopener">vermigold.shop</a></footer>
+
+<script src="script.js"></script>
+<script>
+(function(){
+  var email = VG.getQueryEmail();
+  var input = document.getElementById('book-email-input');
+  if (email) input.value = email;
+
+  var form = document.getElementById('book-form');
+  var errorMsg = document.getElementById('book-email-error');
+  var doneEl = document.getElementById('book-done');
+  var doneEmailEl = document.getElementById('book-done-email');
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var value = input.value.trim();
+    if (!VG.isValidEmail(value)){
+      errorMsg.textContent = 'Enter a valid email address.';
+      input.focus();
+      return;
+    }
+    errorMsg.textContent = '';
+    var btn = form.querySelector('button.cta');
+    btn.disabled = true;
+    btn.textContent = 'Reserving…';
+    await VG.captureEmail(value, { wantsPrint: true });
+    doneEmailEl.textContent = value;
+    form.hidden = true;
+    doneEl.hidden = false;
+  });
+})();
+</script>
+</body>
+</html>
