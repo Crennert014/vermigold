@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Living Soil Ecosystem | VermiGold</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="site-nav"><a class="brandmark" href="index.html"><span>VERMIGOLD</span><span class="tm">™</span></a></nav>
+
+<main>
+<div class="stage wide">
+
+  <section class="card light reveal">
+    <div class="eyebrow">A Different Way to Think About Dirt</div>
+    <h2 class="headline">Your Soil Isn't Broken. It's Underfed.</h2>
+    <p class="lede">Most growing advice treats soil like a shelf you restock: add fertilizer,<br/> get nutrients. But underneath every healthy plant is a living ecosystem and in Cedar City, Enoch, and St. George, that ecosystem has been quietly starving for years.</p>
+
+    <div class="soil-fact-grid">
+      <div class="fact"><b>7.8&ndash;8.4</b><span>Typical soil pH here &mdash; high enough to lock out nutrients your plants can't use</span></div>
+      <div class="fact"><b>&lt;1%</b><span>Organic matter in most native soil &mdash; most growing guides assume 3&ndash;5%</span></div>
+      <div class="fact"><b>Brick / dust</b><span>What the same soil feels like wet vs. dry &mdash; dead structure, not just dryness</span></div>
+    </div>
+
+    <div class="story-block">
+      <h3>The ecosystem under your feet</h3>
+      <p>A single teaspoon of healthy soil holds billions of bacteria, miles of fungal thread, and a food web that quietly trades nutrients for sugar all season long. Worm castings, beneficial bacteria, fungi, and insect frass aren't additives &mdash; they're the workforce that turns dead ground into a living one.</p>
+    </div>
+
+    <div class="story-block">
+      <h3>Why fertilizer alone doesn't fix it</h3>
+      <p>Fertilizer feeds the plant for a week. Biology feeds the plant &mdash; and the soil, and next year's soil &mdash; for good. Compaction, crusting, and nutrient lockout are symptoms of one root problem: there isn't enough life down there to run the system.</p>
+    </div>
+
+    <div class="story-block">
+      <h3>What rebuilding actually looks like</h3>
+      <p>Reintroduce the biology, protect it with cover and no-till habits, and keep it fed and hydrated through the year &mdash; and the soil starts doing the work itself. That's the whole system this almanac walks through, month by month.</p>
+    </div>
+
+    <p class="lede" style="margin-bottom:8px;">From here, go deeper into the system, or go straight to the fix.</p>
+
+    <div class="fork">
+      <div class="fork-card">
+        <b>Learn the whole system</b>
+        <span>The complete regenerative playbook, on paper, spiral-bound for the potting bench &mdash; the biology, the seasons, the method, in one book.</span>
+        <a class="cta secondary block" id="book-link" href="book.html">Get the Book &rarr;</a>
+      </div>
+      <div class="fork-card">
+        <b>Go straight to the fix</b>
+        <span>See exactly what's in the living soil blend built for this ground, and get it shipped to you.</span>
+        <a class="cta block" id="product-link" href="product.html">See VermiGold Soil &rarr;</a>
+      </div>
+      <div class="fork-card">
+        <b>Master it, step by step</b>
+        <span>Want it taught, not just read? The G.R.O.W.T.H. System course walks you through building living soil from the ground up.</span>
+        <a class="cta secondary block" id="course-link" href="course.html">Explore the Course &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer class="site-footer">VermiGold™ Soil Systems &middot; <a href="https://www.vermigold.shop" target="_blank" rel="noopener">vermigold.shop</a></footer>
+
+<script src="script.js"></script>
+<script>
+(function(){
+  var email = VG.getQueryEmail();
+  if (email){
+    document.getElementById('book-link').href = VG.withEmail('book.html', email);
+    document.getElementById('course-link').href = VG.withEmail('course.html', email);
+    // product.html doesn't need the email — it only links onward to the real shop.
+  }
+})();
+</script>
+</body>
+</html>

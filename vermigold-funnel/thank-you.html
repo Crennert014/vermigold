@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Almanac Is Ready | VermiGold</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="site-nav"><a class="brandmark" href="index.html"><span>VERMIGOLD</span><span class="tm">™</span></a></nav>
+
+<main>
+<div class="stage">
+
+  <section class="card light reveal">
+    <div class="thanks">
+      <div class="big">You're all set.</div>
+      <p>Your copy of <b>The VermiGold Farmer's Almanac</b> is ready &mdash; and we've also got it headed to <b id="thanks-email">your inbox</b>.</p>
+    </div>
+
+    <button class="cta block" id="download-btn" type="button" style="margin-bottom:16px;">Download Your Almanac (PDF) &darr;</button>
+
+    <div class="print-bump" id="print-bump">
+      <div class="print-bump-copy">
+        <b>Want it on your workbench instead of your inbox?</b>
+        <span>Reserve a printed, spiral-bound copy of the Almanac. We'll email you to complete your order &mdash; no payment needed now.</span>
+      </div>
+      <button class="cta secondary" id="print-btn" type="button">Reserve a Printed Copy</button>
+      <div class="print-bump-done" id="print-done" hidden>You're on the list &mdash; we'll email <span id="print-email"></span> about printed copies.</div>
+    </div>
+
+    <a class="cta secondary block" id="continue-link" style="margin-top:16px;" href="soil-biology.html">See What's Really Happening in Your Soil &rarr;</a>
+  </section>
+
+</div>
+</main>
+
+<footer class="site-footer">VermiGold™ Soil Systems &middot; <a href="https://www.vermigold.shop" target="_blank" rel="noopener">vermigold.shop</a></footer>
+
+<script src="script.js"></script>
+<script>
+(function(){
+  var email = VG.getQueryEmail();
+  if (email){
+    document.getElementById('thanks-email').textContent = email;
+    document.getElementById('continue-link').href = VG.withEmail('soil-biology.html', email);
+  }
+
+  var printBtn = document.getElementById('print-btn');
+  var printDone = document.getElementById('print-done');
+  var printEmailEl = document.getElementById('print-email');
+  printBtn.addEventListener('click', async function(){
+    printBtn.disabled = true;
+    printBtn.textContent = 'Reserving…';
+    await VG.captureEmail(email, { wantsPrint: true });
+    printEmailEl.textContent = email || 'you';
+    printBtn.hidden = true;
+    printDone.hidden = false;
+  });
+
+  var downloadBtn = document.getElementById('download-btn');
+  downloadBtn.addEventListener('click', function(){
+    VG.downloadFile('vermigold-almanac-2026.pdf', 'VermiGold-Farmers-Almanac-2026.pdf', downloadBtn);
+  });
+})();
+</script>
+</body>
+</html>

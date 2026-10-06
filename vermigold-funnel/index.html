@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VermiGold Almanac</title>
+<meta name="description" content="Get the free Seasonal Growing &amp; Soil-Care Almanac from VermiGold — a month-by-month guide to reviving high desert soil, naturally.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="on-dark">
+
+<nav class="site-nav"><a class="brandmark" href="index.html"><span>VERMIGOLD</span><span class="tm">™</span></a></nav>
+
+<main>
+<div class="stage">
+
+  <section class="card reveal">
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 200 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="46" r="30" stroke="#e6cd8e" stroke-width="1.4" opacity="0.55"/>
+        <circle cx="100" cy="46" r="3" fill="#c9a24b"/>
+        <path d="M100 46 L100 78" stroke="#e6cd8e" stroke-width="1.6"/>
+        <path d="M100 78 C 80 90, 70 96, 55 132" stroke="#e6cd8e" stroke-width="1.4" fill="none"/>
+        <path d="M100 78 C 120 90, 130 96, 145 132" stroke="#e6cd8e" stroke-width="1.4" fill="none"/>
+        <path d="M100 78 C 92 96, 90 108, 84 134" stroke="#e6cd8e" stroke-width="1.2" fill="none" opacity="0.8"/>
+        <path d="M100 78 C 108 96, 110 108, 116 134" stroke="#e6cd8e" stroke-width="1.2" fill="none" opacity="0.8"/>
+        <path d="M100 90 C 90 96, 84 98, 74 106" stroke="#e6cd8e" stroke-width="1" fill="none" opacity="0.6"/>
+        <path d="M100 90 C 110 96, 116 98, 126 106" stroke="#e6cd8e" stroke-width="1" fill="none" opacity="0.6"/>
+        <circle cx="55" cy="132" r="2" fill="#c9a24b" opacity="0.8"/>
+        <circle cx="145" cy="132" r="2" fill="#c9a24b" opacity="0.8"/>
+        <circle cx="84" cy="134" r="1.6" fill="#c9a24b" opacity="0.6"/>
+        <circle cx="116" cy="134" r="1.6" fill="#c9a24b" opacity="0.6"/>
+        <line x1="20" y1="80" x2="180" y2="80" stroke="#e6cd8e" stroke-width="0.6" opacity="0.35" stroke-dasharray="2 4"/>
+      </svg>
+    </div>
+
+    <div class="social-proof reveal reveal-delay-1"><span class="stars">★★★★★</span><span>Trusted by growers across the high desert</span></div>
+
+    <div class="eyebrow reveal reveal-delay-1">Free for VermiGold growers</div>
+    <h1 class="headline reveal reveal-delay-1">Bring Your Soil<br>Back to Life</h1>
+    <p class="lede reveal reveal-delay-1">Get the free Seasonal Growing &amp; Soil-Care Almanac &mdash; a month-by-month guide to reviving tired, underfed soil, built for exactly the ground under your feet.</p>
+
+    <ul class="checks reveal reveal-delay-2">
+      <li><span class="mark">&#10003;</span><span>A month-by-month planting &amp; feeding calendar for your climate</span></li>
+      <li><span class="mark">&#10003;</span><span>A seasonal soil-care checklist you can run in ten minutes</span></li>
+      <li><span class="mark">&#10003;</span><span>Exactly when to apply living soil for the biggest root &amp; yield boost</span></li>
+      <li></span><span> Sign up for the Almanac to get started immediately</span></li>
+    </ul>
+
+    <form id="optin-form" novalidate class="reveal reveal-delay-2">
+      <div class="field">
+        <label class="field-label" for="email-input">Email address</label>
+        <input id="email-input" type="email" placeholder="you@example.com" autocomplete="email" required>
+      </div>
+      <div class="error-msg" id="email-error"></div>
+      <button class="cta" type="submit">Send Me the Almanac &rarr;</button>
+    </form>
+    <div class="microcopy reveal reveal-delay-2">No spam &mdash; just dirt-under-your-nails advice. Unsubscribe anytime.</div>
+  </section>
+
+</div>
+</main>
+
+<footer class="site-footer">VermiGold™ Soil Systems &middot; <a href="https://www.vermigold.shop" target="_blank" rel="noopener">vermigold.shop</a></footer>
+
+<script src="script.js"></script>
+<script>
+(function(){
+  var form = document.getElementById('optin-form');
+  var input = document.getElementById('email-input');
+  var errorMsg = document.getElementById('email-error');
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var email = input.value.trim();
+    if (!VG.isValidEmail(email)){
+      errorMsg.textContent = 'Enter a valid email address.';
+      input.focus();
+      return;
+    }
+    errorMsg.textContent = '';
+    var btn = form.querySelector('button.cta');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    await VG.captureEmail(email);
+    window.location.href = VG.withEmail('thank-you.html', email);
+  });
+})();
+</script>
+</body>
+</html>
